@@ -1,5 +1,6 @@
 def main():
-    password = get_password()
+    get_password()
+
 
 def get_password():
     stars_count = int(input("Number of stars: "))
@@ -7,7 +8,9 @@ def get_password():
         print_asterisks(i)
     print()
 
+
 def print_asterisks(password):
     print("*" * password)
+
 
 main()
