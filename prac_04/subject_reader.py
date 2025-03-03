@@ -3,27 +3,34 @@ CP1404/CP5632 Practical
 Data file -> lists program
 """
 
-FILENAME = "Week 4/subject_data.txt"
+FILENAME = "subject_data.txt"
 
 
 def main():
-    data = get_data()
-    print(data)
+    """Load subject data from file and display it in a formatted way."""
+    subjects = load_data()
+    display_subject_details(subjects)
 
 
-def get_data():
-    """Read data from file formatted like: subject,lecturer,number of students."""
-    input_file = open(FILENAME)
-    for line in input_file:
-        print(line)  # See what a line looks like
-        print(repr(line))  # See what a line really looks like
-        line = line.strip()  # Remove the \n
-        parts = line.split(',')  # Separate the data into its parts
-        print(parts)  # See what the parts look like (notice the integer is a string)
-        parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
-        print(parts)  # See if that worked
-        print("----------")
-    input_file.close()
+def load_data():
+    """Read data from file and return it as a list of lists."""
+    subjects = []
+    
+    with open(FILENAME, "r") as input_file:
+        for line in input_file:
+            line = line.strip()  # Remove newline character
+            parts = line.split(',')  # Split into components
+            parts[2] = int(parts[2])  # Convert student number to an integer
+            subjects.append(parts)  # Store each subject as a sublist
+    
+    return subjects
+
+
+def display_subject_details(subjects):
+    """Display formatted details for each subject."""
+    for subject in subjects:
+        subject_code, lecturer, student_count = subject
+        print(f"{subject_code} is taught by {lecturer} and has {student_count} students")
 
 
 main()

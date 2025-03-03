@@ -1,25 +1,28 @@
 """
 CP1404/CP5632 Practical
-Starter code for cumulative total income program
+Cumulative Total Income Program
 """
 
-
 def main():
-    """Display income report for incomes over a given number of months."""
+    """Get monthly incomes and display an income report."""
     incomes = []
-    working_period = int(input("How many months? "))
+    num_months = int(input("How many months? "))
 
-    for month in range(1, working_period + 1):
-        income = float(input(f"Enter income for month {str(month)}: "))
+    for month in range(1, num_months + 1):
+        income = float(input(f"Enter income for month {month}: "))  # Using f-string
         incomes.append(income)
-    print_report(incomes, working_period)
 
-def print_report(incomes, working_period):
+    print_income_report(incomes, num_months)
+
+
+def print_income_report(incomes, num_months):
+    """Print income report showing month-wise income and cumulative total."""
     print("\nIncome Report\n-------------")
     total = 0
-    for month in range(1, working_period + 1):
+    for month in range(1, num_months + 1):
         income = incomes[month - 1]
         total += income
-        print("Month {:2} - Income: ${:10.2f} Total: ${:10.2f}".format(month, income, total))
+        print(f"Month {month:2} - Income: ${income:10.2f} Total: ${total:10.2f}")
 
+        
 main()
